@@ -18,7 +18,7 @@ end_date = datetime(2023, 12, 31)
 for i in range(num_rows):
     transaction_uuid = str(uuid.uuid4())
     user_id = random.randint(1, 1000)
-    update_date_time = random_date(start_date, end_date).strftime('%Y%m%d %H:%M:%S')
+    update_date_time = random_date(start_date, end_date).strftime('%Y%-m%-d %H:%M:%S')
     
     # Ensure more than 50% have user_action_type 5
     if i < 0.51 * num_rows:
@@ -32,9 +32,9 @@ for i in range(num_rows):
     rows.append([transaction_uuid, user_id, user_action_type, update_date_time])
 
 # Write to CSV
-with open('source_a.csv', 'w', newline='') as file:
+with open('data/source_a.csv', 'w', newline='') as file:
     writer = csv.writer(file)
-    writer.writerow(['Transaction_uuid', 'User_id', 'User_action_type', 'Update_date_time'])
+    writer.writerow(['transaction_uuid', 'user_id', 'user_action_type', 'update_date_time'])
     writer.writerows(rows)
 
 print("CSV file 'source_a.csv' generated successfully.")
